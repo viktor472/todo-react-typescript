@@ -20,16 +20,21 @@ function App() {
     );
   };
   //------------Add a new task------------
+  //send in task to thew handeler wich comes from Form
   const newTaskHandler = (task: string) => {
+    //asign the apropriate values from the Todolist model
     const newTask = new TodoList(task, false);
-
+    //set the task in array
     setTask((currentTasks) => {
       return currentTasks.concat(newTask);
     });
   };
   //------------Delete a new task------------
+  //send in the id of the cliked list element
   const deleteTaskHandeler = (Id: number) => {
+    //remove the iteme from the array
     setTask((currentTasks) => {
+      //if the id is the same as cliked id set to false
       return currentTasks.filter((task) => task.id !== Id);
     });
   };
@@ -48,8 +53,10 @@ function App() {
   return (
     <>
       <div className="App">
-        <Form addtask={newTaskHandler}></Form>
-        {mapedList}
+        <div className="container">
+          <Form addtask={newTaskHandler} task={task}></Form>
+          {mapedList}
+        </div>
       </div>
     </>
   );

@@ -1,5 +1,6 @@
 import TodoList from "../models/todo";
 import { OneList } from "./OneList";
+import "./list.css";
 
 interface IList {
   done: boolean;
@@ -17,7 +18,7 @@ export const List = ({
 }: IList) => {
   return (
     <>
-      <ul>
+      <ul className="list-item">
         <OneList
           key={id}
           done={done}

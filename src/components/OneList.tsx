@@ -15,6 +15,7 @@ export const OneList = ({
   handleToggle,
   deleteTaskHandeler,
 }: IOneList) => {
+  //Import icon from the FontAwsome library and set to a varieble
   const trash = <FontAwesomeIcon icon={faTrashCan} />;
 
   return (
