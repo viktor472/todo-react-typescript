@@ -5,14 +5,7 @@ import { Form } from "./components/Form";
 import { List } from "./components/List";
 
 function App() {
-  const countriesPast = [
-    new TodoList("Kina", false),
-    new TodoList("USA", false),
-    new TodoList("Spanien", false),
-    new TodoList("Norge", false),
-  ];
-
-  const [task, setTask] = useState(countriesPast);
+  const [task, setTask] = useState<TodoList[]>([]);
 
   //------Done togler-------
   //map all todos and then serch fore a id with the same id as the kliced id. And if so shange done to the opositre
@@ -27,8 +20,19 @@ function App() {
     );
   };
   //------------Add a new task------------
+  const newTaskHandler = (task: string) => {
+    const newTask = new TodoList(task, false);
 
+    setTask((currentTasks) => {
+      return currentTasks.concat(newTask);
+    });
+  };
   //------------Delete a new task------------
+  const deleteTaskHandeler = (Id: number) => {
+    setTask((currentTasks) => {
+      return currentTasks.filter((task) => task.id !== Id);
+    });
+  };
 
   //-----------Map the tasks--------------
   const mapedList = task.map((c) => (
@@ -37,13 +41,14 @@ function App() {
       id={c.id}
       task={c.task}
       handleToggle={handleToggle}
+      deleteTaskHandeler={deleteTaskHandeler}
     ></List>
   ));
 
   return (
     <>
       <div className="App">
-        <Form></Form>
+        <Form addtask={newTaskHandler}></Form>
         {mapedList}
       </div>
     </>
